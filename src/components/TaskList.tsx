@@ -38,6 +38,10 @@ export function TaskList() {
         nameRef.current.value = "";
     }
 
+    const onToggle = (task: Task) => {
+        task.done = !task.done;
+        setTask([...tasks]);
+    }
 
     return (
         <>
@@ -53,7 +57,7 @@ export function TaskList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map(task => <TaskDetail key={task.id} task={task} />)}
+                    {tasks.map(task => <TaskDetail key={task.id} task={task} toggle={onToggle} />)}
                 </tbody>
             </table>
         </>

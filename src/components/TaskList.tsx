@@ -22,9 +22,13 @@ export function TaskList() {
             3: <button onClick={() => addTask()} >➕</button> ✔️
          * 
          */
-        tasks.push({ id: Math.random(), name: "test", done: false })
+        // tasks.push({ id: Math.random(), name: "test", done: false })
 
-        setTask(tasks);
+        //const newTasks = tasks.concat();
+        //newTasks.push({ id: Math.random(), name: "test", done: false });
+
+        //operator rest (...)
+        setTask([...tasks, { id: Math.random(), name: "test", done: false }]);
     }
 
 

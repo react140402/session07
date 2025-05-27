@@ -22,6 +22,8 @@ import type { Post } from './Post';
 export function PostList() {
 
     const [posts, setPosts] = useState<Post[]>([])
+    const [page, setPage] = useState(1);
+    //const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         //JS/TS Promise<AxiosResponse<any, any>>
@@ -44,10 +46,10 @@ export function PostList() {
             console.log('Khoda hafez')
         }
 
-    }, []);
+    }, [page]);
 
     const loadData = async () => {
-        const resp = await axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts?_page=1&_per_page=10')
+        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}}&_per_page=10`)
         setPosts(resp.data);
 
     }
@@ -55,7 +57,9 @@ export function PostList() {
     return (
         <>
             <div>PostList</div>
-
+            <button onClick={() => setPage(1)}>Page 1</button>
+            <button onClick={() => setPage(2)}>Page 2</button>
+            <button onClick={() => setPage(3)}>Page 3</button>
             <table>
                 <thead>
                     <tr>

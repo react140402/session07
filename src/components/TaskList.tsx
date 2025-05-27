@@ -43,7 +43,7 @@ export function TaskList() {
         <>
             <div>TaskList</div>
             <input type="text" ref={nameRef} />
-            <button onClick={addTask} >➕</button>
+            <button type="button" onClick={addTask} >➕</button>
             <table>
                 <thead>
                     <tr>

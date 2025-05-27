@@ -8,6 +8,8 @@
 
 import axios from 'axios';
 import { useEffect, useState, use } from 'react';
+import type { Post } from './Post';
+
 
 //lifecycle hooks
 //useEffect
@@ -15,19 +17,28 @@ import { useEffect, useState, use } from 'react';
 // 1. react component
 //      custome hook
 // 2. level asli component
-
 //react 19 -> use API
-
-
-
 
 export function PostList() {
     const [showHeader, setShowHeader] = useState(true);
 
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        //JS/TS Promise<AxiosResponse<any, any>>
+        //C#    Task<AxiosResponse<any, any>>
+        //async/await 
+        // axios.get('https://jsonplaceholder.typicode.com/posts').then(resp =>
+        //     console.log(resp)
+        // )
+
+        loadData();
+
     }, []);
 
+
+    const loadData = async () => {
+        const resp = await axios.get<Post>('https://jsonplaceholder.typicode.com/posts')
+        console.log(resp)
+    }
 
     return (
         <>

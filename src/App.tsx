@@ -2,7 +2,9 @@ function App() {
 
   return (
     <>
-      <h1>Salam</h1>
+      <div className="container">
+        <h1>Salam</h1>
+      </div>
     </>
   )
 }

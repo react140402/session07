@@ -1,9 +1,11 @@
+import { TaskList } from './components/TaskList'
+
 function App() {
 
   return (
     <>
       <div className="container">
-        <h1>Salam</h1>
+        <TaskList></TaskList>
       </div>
     </>
   )

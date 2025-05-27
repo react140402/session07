@@ -21,6 +21,7 @@ import type { Post } from './Post';
 
 export function PostList() {
     const [showHeader, setShowHeader] = useState(true);
+    const [posts, setPosts] = useState<Post[]>([])
 
     useEffect(() => {
         //JS/TS Promise<AxiosResponse<any, any>>
@@ -34,10 +35,9 @@ export function PostList() {
 
     }, []);
 
-
     const loadData = async () => {
         const resp = await axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts?_page=1&_per_page=10')
-        console.log(resp.data)
+        setPosts(resp.data);
 
     }
 
@@ -45,6 +45,24 @@ export function PostList() {
         <>
             {showHeader && <div>PostList</div>}
             <button onClick={() => setShowHeader(!showHeader)}>toggle</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>userId</th>
+                        <th>title</th>
+                        <th>body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {posts.map(post => <tr key={post.id}>
+                        <td>{post.id}</td>
+                        <td>{post.userId}</td>
+                        <td>{post.title}</td>
+                        <td>{post.body}</td>
+                    </tr>)}
+                </tbody>
+            </table>
         </>
     )
 }

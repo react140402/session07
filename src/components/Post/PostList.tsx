@@ -23,7 +23,7 @@ export function PostList() {
 
     const [posts, setPosts] = useState<Post[]>([])
     const [page, setPage] = useState(1);
-    //const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         //JS/TS Promise<AxiosResponse<any, any>>
@@ -49,8 +49,13 @@ export function PostList() {
     }, [page]);
 
     const loadData = async () => {
+        setLoading(true);
+        setPosts([]);
         const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}}&_per_page=10`)
+
+        console.log(resp.headers["x-total-count"])
         setPosts(resp.data);
+        setLoading(false);
 
     }
 
@@ -70,6 +75,9 @@ export function PostList() {
                     </tr>
                 </thead>
                 <tbody>
+                    {loading && <tr>
+                        <td colSpan={10}>Loading ...</td>
+                    </tr>}
                     {posts.map(post => <tr key={post.id}>
                         <td>{post.id}</td>
                         <td>{post.userId}</td>

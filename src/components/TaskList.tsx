@@ -32,6 +32,7 @@ export function TaskList() {
         if (!(nameRef && nameRef.current)) {
             return;
         }
+
         setTask([...tasks, { id: Math.random(), name: nameRef.current.value, done: false }]);
         nameRef.current.value = "";
     }

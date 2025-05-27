@@ -19,6 +19,7 @@ import type { Post } from './Post';
 // 2. level asli component
 //react 19 -> use API
 
+//https://jsonplaceholder.typicode.com/
 export function PostList() {
 
     const [posts, setPosts] = useState<Post[]>([])
@@ -35,7 +36,7 @@ export function PostList() {
 
         const id = setInterval(() => {
             loadData();
-        }, 10000);
+        }, 30000);
 
         loadData();
         console.log("Salam")

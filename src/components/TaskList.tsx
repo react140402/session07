@@ -43,6 +43,10 @@ export function TaskList() {
         setTask([...tasks]);
     }
 
+    const remove = (task: Task) => {
+        setTask(tasks.filter(x => x.id !== task.id));
+    }
+
     return (
         <>
             <div>TaskList</div>
@@ -57,7 +61,7 @@ export function TaskList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map(task => <TaskDetail key={task.id} task={task} toggle={onToggle} />)}
+                    {tasks.map(task => <TaskDetail key={task.id} task={task} toggle={onToggle} remove={remove} />)}
                 </tbody>
             </table>
         </>

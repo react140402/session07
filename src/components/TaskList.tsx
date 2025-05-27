@@ -1,13 +1,9 @@
 import { useState } from "react";
+import { TaskDetail } from "./TaskDetail";
+import type { Task } from "./Task";
+
 
 //rfc - snippet 
-
-interface Task {
-    id: number;
-    name: string;
-    done: boolean;
-}
-
 export function TaskList() {
 
     const [tasks, setTask] = useState<Task[]>([
@@ -30,26 +26,10 @@ export function TaskList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map(task => <tr key={task.id}>
-                        <td>{task.id}</td>
-                        <td>{task.name}</td>
-                        <td>{task.done ? "Yes" : "No"}</td>
-                    </tr>)}
+                    {tasks.map(task => <TaskDetail key={task.id} task={task} />)}
                 </tbody>
             </table>
         </>
 
     )
-}
-
-
-interface Props {
-    task: Task
-}
-function TaskDetail({ task }: Props) {
-    return <tr key={task.id}>
-        <td>{task.id}</td>
-        <td>{task.name}</td>
-        <td>{task.done ? "Yes" : "No"}</td>
-    </tr>
 }

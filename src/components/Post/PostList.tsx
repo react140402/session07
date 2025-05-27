@@ -20,7 +20,7 @@ import type { Post } from './Post';
 //react 19 -> use API
 
 export function PostList() {
-    const [showHeader, setShowHeader] = useState(true);
+
     const [posts, setPosts] = useState<Post[]>([])
 
     useEffect(() => {
@@ -31,7 +31,18 @@ export function PostList() {
         //     console.log(resp)
         // )
 
+        const id = setInterval(() => {
+            loadData();
+        }, 10000);
+
         loadData();
+        console.log("Salam")
+
+        return () => {
+            //cleanup
+            clearInterval(id);
+            console.log('Khoda hafez')
+        }
 
     }, []);
 
@@ -43,8 +54,8 @@ export function PostList() {
 
     return (
         <>
-            {showHeader && <div>PostList</div>}
-            <button onClick={() => setShowHeader(!showHeader)}>toggle</button>
+            <div>PostList</div>
+
             <table>
                 <thead>
                     <tr>

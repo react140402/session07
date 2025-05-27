@@ -33,7 +33,8 @@ export function TaskList() {
             return;
         }
 
-        setTask([...tasks, { id: Math.random(), name: nameRef.current.value, done: false }]);
+        const newTask = { id: Math.random(), name: nameRef.current.value, done: false };
+        setTask([...tasks, newTask]);
         nameRef.current.value = "";
     }
 

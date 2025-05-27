@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { TaskDetail } from "./TaskDetail";
 import type { Task } from "./Task";
 
@@ -13,7 +13,7 @@ export function TaskList() {
         { id: 4, name: "task 4", done: false },
         { id: 5, name: "task 5", done: true },
     ]);
-    const [name, setName] = useState("");
+    const nameRef = useRef<HTMLInputElement>(null);
 
 
     const addTask = () => {
@@ -29,15 +29,18 @@ export function TaskList() {
         //newTasks.push({ id: Math.random(), name: "test", done: false });
 
         //operator rest (...)
-        setTask([...tasks, { id: Math.random(), name: name, done: false }]);
-        setName("")
+        if (!(nameRef && nameRef.current)) {
+            return;
+        }
+        setTask([...tasks, { id: Math.random(), name: nameRef.current.value, done: false }]);
+        nameRef.current.value = "";
     }
 
 
     return (
         <>
             <div>TaskList</div>
-            <input type="text" value={name} onChange={e => setName(e.target.value)} />
+            <input type="text" ref={nameRef} />
             <button onClick={addTask} >➕</button>
             <table>
                 <thead>

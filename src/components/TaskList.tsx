@@ -18,9 +18,9 @@ export function TaskList() {
 
     const addTask = () => {
         /**
-         *  1: <button onClick={addTask()} >➕</button> ❌
-            2: <button onClick={addTask} >➕</button> ✔️
-            3: <button onClick={() => addTask()} >➕</button> ✔️
+         *  1: <button onClick={addTask()} >➕</button>         ❌
+            2: <button onClick={addTask} >➕</button>           ✔️
+            3: <button onClick={() => addTask()} >➕</button>   ✔️
          * 
          */
         // tasks.push({ id: Math.random(), name: "test", done: false })

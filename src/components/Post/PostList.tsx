@@ -36,8 +36,9 @@ export function PostList() {
 
 
     const loadData = async () => {
-        const resp = await axios.get<Post>('https://jsonplaceholder.typicode.com/posts')
-        console.log(resp)
+        const resp = await axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts?_page=1&_per_page=10')
+        console.log(resp.data)
+
     }
 
     return (

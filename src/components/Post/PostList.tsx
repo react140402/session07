@@ -23,39 +23,6 @@ import { Pagination, Table, type TableProps } from 'antd';
 //https://jsonplaceholder.typicode.com/
 
 
-
-
-const columns: TableProps<Post>['columns'] = [
-    {
-        title: 'Id',
-        dataIndex: 'id',
-        key: 'id',
-        sorter: (a, b) => a.id - b.id,
-    },
-    {
-        title: 'User Id',
-        dataIndex: 'userId',
-        key: 'userId',
-        sorter: (a, b) => a.userId - b.userId,
-    },
-    {
-        title: 'Title',
-        dataIndex: 'title',
-        key: 'title',
-        sorter: (a, b) => a.title.length - b.title.length,
-    },
-    {
-        title: 'متن پست',
-        key: 'body',
-        dataIndex: 'body',
-        render: (_, { body }) => (
-            <>
-                {body.substring(1, 100)}
-            </>
-        ),
-    },
-];
-
 export function PostList() {
 
     const [posts, setPosts] = useState<Post[]>([])
@@ -64,7 +31,36 @@ export function PostList() {
     const [loading, setLoading] = useState(false);
     const [totalCount, setTotalCount] = useState(0)
 
-
+    const columns: TableProps<Post>['columns'] = [
+        {
+            title: 'Id',
+            dataIndex: 'id',
+            key: 'id',
+            sorter: (a, b) => a.id - b.id,
+        },
+        {
+            title: 'User Id',
+            dataIndex: 'userId',
+            key: 'userId',
+            sorter: (a, b) => a.userId - b.userId,
+        },
+        {
+            title: 'Title',
+            dataIndex: 'title',
+            key: 'title',
+            sorter: (a, b) => a.title.length - b.title.length,
+        },
+        {
+            title: 'متن پست',
+            key: 'body',
+            dataIndex: 'body',
+            render: (_, { body }) => (
+                <>
+                    {body.substring(1, 100)}
+                </>
+            ),
+        },
+    ];
 
     useEffect(() => {
         loadData();

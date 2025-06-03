@@ -7,9 +7,10 @@
 */
 
 import axios from 'axios';
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState } from 'react';
 import type { Post } from './Post';
 import { Pagination, Table, type TableProps } from 'antd';
+import { useFetchData } from '../../hooks/useFetchData';
 
 
 //lifecycle hooks
@@ -24,12 +25,6 @@ import { Pagination, Table, type TableProps } from 'antd';
 
 
 export function PostList() {
-
-    const [posts, setPosts] = useState<Post[]>([])
-    const [page, setPage] = useState(1);
-    const [perPage, setPerPage] = useState(10)
-    const [loading, setLoading] = useState(false);
-    const [totalCount, setTotalCount] = useState(0)
 
     const columns: TableProps<Post>['columns'] = [
         {
@@ -62,37 +57,44 @@ export function PostList() {
         },
     ];
 
-    useEffect(() => {
-        loadData();
-    }, [page, perPage]);
+    // const [posts, setPosts] = useState<Post[]>([])
+    // const [page, setPage] = useState(1);
+    // const [perPage, setPerPage] = useState(10)
+    // const [loading, setLoading] = useState(false);
+    // const [totalCount, setTotalCount] = useState(0)
 
-    const loadData = async () => {
-        setLoading(true);
-        setPosts([]);
-        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${perPage}`)
+    // useEffect(() => {
+    //     loadData();
+    // }, [page, perPage]);
 
-        setTotalCount(+resp.headers["x-total-count"]);
-        setPosts(resp.data);
-        setLoading(false);
-    }
+    // const loadData = async () => {
+    //     setLoading(true);
+    //     setPosts([]);
+    //     const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${perPage}`)
+
+    //     setTotalCount(+resp.headers["x-total-count"]);
+    //     setPosts(resp.data);
+    //     setLoading(false);
+    // }
+
+    const { data, loading, page, totalCount, setPage, setPageSize } = useFetchData();
+
     function paginationChange(page: number, pageSize: number) {
         setPage(page);
-        setPerPage(pageSize)
+        setPageSize(pageSize)
     }
 
     return (
         <>
             <div>PostList</div>
-
             <Pagination defaultCurrent={page} total={totalCount} onChange={paginationChange} />
             <br />
             <Table
                 loading={loading}
-                dataSource={posts}
+                dataSource={data}
                 columns={columns}
                 pagination={false}
             />;
-
         </>
     )
 }

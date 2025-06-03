@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import type { Task } from "./Task";
 
 export interface Props {
@@ -6,7 +5,7 @@ export interface Props {
     toggle: (task: Task) => void
     remove: (task: Task) => void
 }
-export const TaskDetail = memo(function ({ task, toggle, remove }: Props) {
+export function TaskDetail({ task, toggle, remove }: Props) {
     return <tr>
         <td>{task.id}</td>
         <td>{task.name}</td>
@@ -16,4 +15,4 @@ export const TaskDetail = memo(function ({ task, toggle, remove }: Props) {
             {/* win 11 ->  ctrl+.  */}
         </td>
     </tr>;
-});
+};

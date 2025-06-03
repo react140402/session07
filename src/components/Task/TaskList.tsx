@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 import { TaskDetail } from "./TaskDetail";
 import type { Task } from "./Task";
 
@@ -38,14 +38,14 @@ export function TaskList() {
         nameRef.current.value = "";
     }
 
-    const onToggle = useCallback((task: Task) => {
+    const onToggle = (task: Task) => {
         task.done = !task.done;
         setTask([...tasks]);
-    }, [])
+    }
 
-    const remove = useCallback((task: Task) => {
+    const remove = (task: Task) => {
         setTask(tasks.filter(x => x.id !== task.id));
-    }, [])
+    }
 
     return (
         <>

@@ -9,7 +9,7 @@
 import axios from 'axios';
 import { useEffect, useState, use } from 'react';
 import type { Post } from './Post';
-import { Table, type TableProps } from 'antd';
+import { Pagination, Table, type TableProps } from 'antd';
 
 
 //lifecycle hooks
@@ -88,7 +88,7 @@ export function PostList() {
     const loadData = async () => {
         setLoading(true);
         setPosts([]);
-        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}}&_per_page=10`)
+        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_per_page=10`)
 
         setTotalCount(+resp.headers["x-total-count"]);
         setPosts(resp.data);
@@ -107,10 +107,15 @@ export function PostList() {
         <>
             <div>PostList</div>
             {/* {generatePaging()} */}
-            {new Array(totalCount / 10).fill(0).map((_, index) =>
+            {/* {new Array(totalCount / 10).fill(0).map((_, index) =>
                 <button onClick={() => setPage(index + 1)}>Page {index + 1}</button>
-            )}
-            <Table loading={loading} dataSource={posts} columns={columns} />;
+            )} */}
+            <Pagination defaultCurrent={page} total={totalCount} onChange={page => setPage(page)} />
+            <Table
+                loading={loading}
+                dataSource={posts}
+                columns={columns}
+            />;
             {/* <table>
                 <thead>
                     <tr>

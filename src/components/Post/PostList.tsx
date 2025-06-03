@@ -71,7 +71,10 @@ export function PostList() {
     return (
         <>
             <div>PostList</div>
-            {generatePaging()}
+            {/* {generatePaging()} */}
+            {new Array(totalCount / 10).fill(0).map((_, index) =>
+                <button onClick={() => setPage(index + 1)}>Page {index + 1}</button>
+            )}
             <table>
                 <thead>
                     <tr>
@@ -85,7 +88,7 @@ export function PostList() {
                     {loading && <tr>
                         <td colSpan={10}>Loading ...</td>
                     </tr>}
-                    {posts.map(post => <tr key={post.id}>
+                    {posts.map((post) => <tr key={post.id}>
                         <td>{post.id}</td>
                         <td>{post.userId}</td>
                         <td>{post.title}</td>

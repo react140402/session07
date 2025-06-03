@@ -9,6 +9,7 @@
 import axios from 'axios';
 import { useEffect, useState, use } from 'react';
 import type { Post } from './Post';
+import { Table, type TableProps } from 'antd';
 
 
 //lifecycle hooks
@@ -20,6 +21,40 @@ import type { Post } from './Post';
 //react 19 -> use API
 
 //https://jsonplaceholder.typicode.com/
+
+
+
+const columns: TableProps<Post>['columns'] = [
+    {
+        title: 'Id',
+        dataIndex: 'id',
+        key: 'id',
+        sorter: (a, b) => a.id - b.id,
+    },
+    {
+        title: 'User Id',
+        dataIndex: 'userId',
+        key: 'userId',
+        sorter: (a, b) => a.userId - b.userId,
+    },
+    {
+        title: 'Title',
+        dataIndex: 'title',
+        key: 'title',
+        sorter: (a, b) => a.title.length - b.title.length,
+    },
+    {
+        title: 'متن پست',
+        key: 'body',
+        dataIndex: 'body',
+        render: (_, { body }) => (
+            <>
+                {body.substring(1, 100)}
+            </>
+        ),
+    },
+];
+
 export function PostList() {
 
     const [posts, setPosts] = useState<Post[]>([])
@@ -75,7 +110,8 @@ export function PostList() {
             {new Array(totalCount / 10).fill(0).map((_, index) =>
                 <button onClick={() => setPage(index + 1)}>Page {index + 1}</button>
             )}
-            <table>
+            <Table loading={loading} dataSource={posts} columns={columns} />;
+            {/* <table>
                 <thead>
                     <tr>
                         <th>id</th>
@@ -95,7 +131,7 @@ export function PostList() {
                         <td>{post.body}</td>
                     </tr>)}
                 </tbody>
-            </table>
+            </table> */}
         </>
     )
 }

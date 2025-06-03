@@ -35,16 +35,16 @@ export function PostList() {
         //     console.log(resp)
         // )
 
-        const id = setInterval(() => {
-            loadData();
-        }, 30000);
+        // const id = setInterval(() => {
+        //     loadData();
+        // }, 30000);
 
         loadData();
         console.log("Salam")
 
         return () => {
             //cleanup
-            clearInterval(id);
+            // clearInterval(id);
             console.log('Khoda hafez')
         }
 

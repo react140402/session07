@@ -24,6 +24,7 @@ import { Pagination, Table, type TableProps } from 'antd';
 
 
 
+
 const columns: TableProps<Post>['columns'] = [
     {
         title: 'Id',
@@ -59,84 +60,43 @@ export function PostList() {
 
     const [posts, setPosts] = useState<Post[]>([])
     const [page, setPage] = useState(1);
+    const [perPage, setPerPage] = useState(10)
     const [loading, setLoading] = useState(false);
     const [totalCount, setTotalCount] = useState(0)
 
+
+
     useEffect(() => {
-        //JS/TS Promise<AxiosResponse<any, any>>
-        //C#    Task<AxiosResponse<any, any>>
-        //async/await 
-        // axios.get('https://jsonplaceholder.typicode.com/posts').then(resp =>
-        //     console.log(resp)
-        // )
-
-        // const id = setInterval(() => {
-        //     loadData();
-        // }, 30000);
-
         loadData();
-        console.log("Salam")
-
-        return () => {
-            //cleanup
-            // clearInterval(id);
-            console.log('Khoda hafez')
-        }
-
-    }, [page]);
+    }, [page, perPage]);
 
     const loadData = async () => {
         setLoading(true);
         setPosts([]);
-        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_per_page=10`)
+        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${perPage}`)
 
         setTotalCount(+resp.headers["x-total-count"]);
         setPosts(resp.data);
         setLoading(false);
-
     }
-    function generatePaging() {
-        let pages = [];
-        for (let i = 1; i <= totalCount / 10; i++) {
-            pages.push(<button onClick={() => setPage(i)}>Page {i}</button>)
-        }
-        return pages;
+    function paginationChange(page: number, pageSize: number) {
+        setPage(page);
+        setPerPage(pageSize)
     }
 
     return (
         <>
             <div>PostList</div>
-            {/* {generatePaging()} */}
-            {/* {new Array(totalCount / 10).fill(0).map((_, index) =>
-                <button onClick={() => setPage(index + 1)}>Page {index + 1}</button>
-            )} */}
-            <Pagination defaultCurrent={page} total={totalCount} onChange={page => setPage(page)} />
+
+            <Pagination defaultCurrent={page} total={totalCount} onChange={paginationChange} />
+            <br />
             <Table
                 loading={loading}
                 dataSource={posts}
                 columns={columns}
+                pagination={false}
             />;
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>userId</th>
-                        <th>title</th>
-                        <th>body</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {loading && <tr>
-                        <td colSpan={10}>Loading ...</td>
-                    </tr>}
-                    {posts.map((post) => <tr key={post.id}>
-                        <td>{post.id}</td>
-                        <td>{post.userId}</td>
-                        <td>{post.title}</td>
-                        <td>{post.body}</td>
-                    </tr>)}
-                </tbody>
-            </table> */}
+
         </>
     )
 }

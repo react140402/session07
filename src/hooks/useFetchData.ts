@@ -23,14 +23,25 @@ export function useFetchData<T>(endpoint: string) {
         setLoading(false);
     }
 
+    function paginationChange(page: number, pageSize: number) {
+        setPage(page);
+        setPageSize(pageSize)
+    }
+
+
+    function refresh() {
+        setPage(1);
+        loadData(); //TODO: 
+    }
+
 
     return {
         //data: data
         data,
         page,
-        setPage,
-        setPageSize,
         loading,
-        totalCount
+        totalCount,
+        paginationChange,
+        refresh
     }
 }

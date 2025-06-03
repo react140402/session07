@@ -77,7 +77,7 @@ export function PostList() {
     //     setLoading(false);
     // }
 
-    const { data, loading, page, totalCount, setPage, setPageSize } = useFetchData();
+    const { data, loading, page, totalCount, setPage, setPageSize } = useFetchData<Post>("posts");
 
     function paginationChange(page: number, pageSize: number) {
         setPage(page);

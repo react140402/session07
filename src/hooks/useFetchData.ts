@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import type { Post } from "../components/Post/Post";
 import axios from "axios";
 
-
-export function useFetchData() {
-    const [data, setData] = useState<Post[]>([])
+//generics
+export function useFetchData<T>(endpoint: string) {
+    const [data, setData] = useState<T[]>([])
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10)
     const [loading, setLoading] = useState(false);
@@ -17,7 +16,7 @@ export function useFetchData() {
     const loadData = async () => {
         setLoading(true);
         setData([]);
-        const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${pageSize}`)
+        const resp = await axios.get<T[]>(`https://jsonplaceholder.typicode.com/${endpoint}?_page=${page}&_limit=${pageSize}`)
 
         setTotalCount(+resp.headers["x-total-count"]);
         setData(resp.data);

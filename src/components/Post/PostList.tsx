@@ -25,6 +25,7 @@ export function PostList() {
     const [posts, setPosts] = useState<Post[]>([])
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [totalCount, setTotalCount] = useState(0)
 
     useEffect(() => {
         //JS/TS Promise<AxiosResponse<any, any>>
@@ -54,18 +55,23 @@ export function PostList() {
         setPosts([]);
         const resp = await axios.get<Post[]>(`https://jsonplaceholder.typicode.com/posts?_page=${page}}&_per_page=10`)
 
-        console.log(resp.headers["x-total-count"])
+        setTotalCount(+resp.headers["x-total-count"]);
         setPosts(resp.data);
         setLoading(false);
 
+    }
+    function generatePaging() {
+        let pages = [];
+        for (let i = 1; i <= totalCount / 10; i++) {
+            pages.push(<button onClick={() => setPage(i)}>Page {i}</button>)
+        }
+        return pages;
     }
 
     return (
         <>
             <div>PostList</div>
-            <button onClick={() => setPage(1)}>Page 1</button>
-            <button onClick={() => setPage(2)}>Page 2</button>
-            <button onClick={() => setPage(3)}>Page 3</button>
+            {generatePaging()}
             <table>
                 <thead>
                     <tr>

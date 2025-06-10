@@ -50,9 +50,10 @@ export const AppLayout = () => {
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={e => navigate(e.key)} />
             </Sider>
             <Layout>
-                <Header style={{ padding: 0, background: colorBgContainer }} />
+                <Header style={{ padding: 0, background: colorBgContainer }} >
+                    <SelectColor />
+                </Header>
                 <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }} items={[{ title: 'User' }, { title: 'Bill' }]} />
                     <div
                         style={{
                             padding: 24,
@@ -66,7 +67,7 @@ export const AppLayout = () => {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                    {new Date().getFullYear()} React 1404
                 </Footer>
             </Layout>
         </Layout>

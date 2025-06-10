@@ -37,7 +37,7 @@ export const counterSlice = createSlice({
 export const { increment, decrement, incrementByAmount, reset } = counterSlice.actions;
 
 /*
-    // increment  = {action: "counter/increment", palyload: null}
+    // increment() -> {action: "counter/increment", palyload: null}
 */
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.counter.value

@@ -4,11 +4,13 @@ import { TaskList } from "./components/Task/TaskList";
 import { TodoList } from "./components/Todo/TodoList";
 import { PostList } from "./components/Post/PostList";
 import { AuthLayout } from "./AuthLayout";
+import { ErrorPage } from "./ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <AppLayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',

@@ -8,7 +8,7 @@ interface Props {
 export function AppHelmet({ title, children }: Props) {
     return (
         <Helmet>
-            <title>{title} | App 4</title>
+            <title>{title} | {import.meta.env.VITE_APP_TITLE}</title>
             {children}
         </Helmet>
     )

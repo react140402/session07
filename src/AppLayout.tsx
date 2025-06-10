@@ -66,7 +66,7 @@ export const AppLayout = () => {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    {new Date().getFullYear()} React 1404
+                    {new Date().getFullYear()} {import.meta.env.VITE_APP_TITLE}
                 </Footer>
             </Layout>
         </Layout>

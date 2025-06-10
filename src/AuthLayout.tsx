@@ -46,7 +46,7 @@ export const AuthLayout = () => {
             <Content style={contentStyle}>
                 <Outlet />
             </Content>
-            <Footer style={footerStyle}>Footer</Footer>
+            <Footer style={footerStyle}>{import.meta.env.VITE_APP_TITLE}</Footer>
         </Layout>
     </Flex>
 }

@@ -1,6 +1,6 @@
 import { Button, Pagination, Table, type TableProps } from "antd";
 import { useFetchData } from "../../hooks/useFetchData";
-import { useContext } from "react";
+import { use } from "react";
 import { AppContext } from "../../AppContext";
 
 interface Todo {
@@ -13,7 +13,7 @@ interface Todo {
 
 export function TodoList() {
 
-    const { color } = useContext(AppContext);
+    const { color } = use(AppContext);
 
     const columns: TableProps<Todo>['columns'] = [
         {

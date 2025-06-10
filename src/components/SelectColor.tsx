@@ -1,5 +1,5 @@
 import { Button, Dropdown, type MenuProps } from "antd";
-import { useContext } from "react";
+import { use, useContext } from "react";
 import { AppContext } from "../AppContext";
 
 const items: MenuProps['items'] = [
@@ -20,7 +20,7 @@ const items: MenuProps['items'] = [
 
 
 export function SelectColor() {
-    const { setColor } = useContext(AppContext)
+    const { setColor } = use(AppContext)
     const onClick: MenuProps['onClick'] = ({ key }) => {
         setColor(key)
     };

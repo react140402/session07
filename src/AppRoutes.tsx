@@ -1,10 +1,17 @@
+import { ErrorPage } from "./ErrorPage";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from './AppLayout'
-import { TaskList } from "./components/Task/TaskList";
-import { TodoList } from "./components/Todo/TodoList";
-import { PostList } from "./components/Post/PostList";
+// // import { TaskList } from "./components/Task/TaskList";
+// import { TodoList } from "./components/Todo/TodoList";
+// import { PostList } from "./components/Post/PostList";
 import { AuthLayout } from "./AuthLayout";
-import { ErrorPage } from "./ErrorPage";
+
+const TaskList = lazy(() => import("./components/Task/TaskList"))
+const TodoList = lazy(() => import("./components/Todo/TodoList"))
+const PostList = lazy(() => import("./components/Post/PostList"))
+
+
 
 export const router = createBrowserRouter([
     {

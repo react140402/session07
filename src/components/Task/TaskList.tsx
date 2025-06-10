@@ -5,7 +5,7 @@ import { AppHelmet } from "../../AppHelmet";
 
 
 //rfc - snippet 
-export function TaskList() {
+export default function TaskList() {
 
     const [tasks, setTask] = useState<Task[]>([
         { id: 1, name: "task 1", done: true },

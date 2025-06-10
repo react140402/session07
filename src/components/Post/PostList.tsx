@@ -23,7 +23,7 @@ import { AppHelmet } from '../../AppHelmet';
 //https://jsonplaceholder.typicode.com/
 
 
-export function PostList() {
+export default function PostList() {
 
     const columns: TableProps<Post>['columns'] = [
         {

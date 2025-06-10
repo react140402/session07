@@ -12,7 +12,7 @@ interface Todo {
 }
 
 
-export function TodoList() {
+export default function TodoList() {
 
     const { color } = use(AppContext);
 

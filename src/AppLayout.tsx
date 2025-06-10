@@ -8,11 +8,8 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-
-import { PostList } from './components/Post/PostList'
-import { TaskList } from './components/Task/TaskList'
-import { TodoList } from './components/Todo/TodoList';
 import { SelectColor } from './components/SelectColor';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -33,15 +30,15 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Home', 'home', <PieChartOutlined />),
-    getItem('Task List', '1', <PieChartOutlined />),
-    getItem('Todos', '2', <DesktopOutlined />),
+    getItem('Home', '/', <PieChartOutlined />),
+    getItem('Tasks', '/task', <PieChartOutlined />),
+    getItem('Todos', '/todo', <DesktopOutlined />),
+    getItem('Posts', '/post', <DesktopOutlined />),
 ];
 
-const App: React.FC = () => {
-    const [showPostList, setShowPostList] = useState(true);
-
+export const AppLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate();
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
@@ -50,7 +47,7 @@ const App: React.FC = () => {
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div className="demo-logo-vertical" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={e => navigate(e.key)} />
             </Sider>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }} />
@@ -65,15 +62,7 @@ const App: React.FC = () => {
                         }}
                     >
                         <SelectColor />
-
-                        <div className="container">
-                            <TodoList />
-
-                            <TaskList></TaskList>
-
-                            <button onClick={() => setShowPostList(!showPostList)}>toggle</button>
-                            {showPostList && <PostList></PostList>}
-                        </div>
+                        <Outlet />
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
@@ -83,5 +72,3 @@ const App: React.FC = () => {
         </Layout>
     );
 };
-
-export default App;

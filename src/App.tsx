@@ -1,13 +1,13 @@
 
+import { RouterProvider } from 'react-router-dom';
 import { AppProvider } from './AppContext';
-import AppLayout from './AppLayout';
-
+import { router } from './AppRoutes'
 function App() {
 
   return (
     <>
       <AppProvider>
-        <AppLayout></AppLayout>
+        <RouterProvider router={router} />
       </AppProvider>
     </>
   )

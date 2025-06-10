@@ -2,7 +2,7 @@ import { Result } from "antd";
 import { useRouteError } from "react-router-dom"
 
 export const ErrorPage = () => {
-    const error = useRouteError();
+    const error = useRouteError() as any;
     console.log(error)
 
     return <>

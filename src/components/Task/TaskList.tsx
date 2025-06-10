@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { TaskDetail } from "./TaskDetail";
 import type { Task } from "./Task";
-import { Helmet } from "react-helmet-async";
 import { AppHelmet } from "../../AppHelmet";
 
 

@@ -2,7 +2,6 @@ import { Button, Pagination, Table, type TableProps } from "antd";
 import { useFetchData } from "../../hooks/useFetchData";
 import { use } from "react";
 import { AppContext } from "../../AppContext";
-import { Helmet } from "react-helmet-async";
 import { AppHelmet } from "../../AppHelmet";
 
 interface Todo {

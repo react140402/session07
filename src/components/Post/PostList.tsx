@@ -6,12 +6,9 @@
 
 */
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import type { Post } from './Post';
 import { Pagination, Table, type TableProps } from 'antd';
 import { useFetchData } from '../../hooks/useFetchData';
-import { Helmet } from 'react-helmet-async';
 import { AppHelmet } from '../../AppHelmet';
 
 

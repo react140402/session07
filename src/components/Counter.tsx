@@ -1,13 +1,15 @@
 import { Button } from "antd"
-import { useState } from "react"
+import { useAppDispatch, useAppSelector } from "../hooks"
+import { decrement, increment, selectCount } from "./counter.slice"
 
 export default function Counter() {
-    const [counter, setCounter] = useState(0)
+    const counter = useAppSelector(selectCount);
+    const dispatch = useAppDispatch();
     return (
         <>
-            <Button onClick={() => setCounter(counter + 1)}>➕</Button>
+            <Button onClick={() => dispatch(increment())}>➕</Button>
             {counter}
-            <Button onClick={() => setCounter(counter - 1)}>➖</Button>
+            <Button onClick={() => dispatch(decrement())}>➖</Button>
         </>
     )
 }

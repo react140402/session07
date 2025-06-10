@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { TaskDetail } from "./TaskDetail";
 import type { Task } from "./Task";
+import { Helmet } from "react-helmet-async";
+import { AppHelmet } from "../../AppHelmet";
 
 
 //rfc - snippet 
@@ -49,6 +51,7 @@ export function TaskList() {
 
     return (
         <>
+            <AppHelmet title="Task List"></AppHelmet>
             <div>TaskList</div>
             <input type="text" ref={nameRef} />
             <button type="button" onClick={addTask} >➕</button>

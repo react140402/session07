@@ -2,6 +2,8 @@ import { Button, Pagination, Table, type TableProps } from "antd";
 import { useFetchData } from "../../hooks/useFetchData";
 import { use } from "react";
 import { AppContext } from "../../AppContext";
+import { Helmet } from "react-helmet-async";
+import { AppHelmet } from "../../AppHelmet";
 
 interface Todo {
     id: number;
@@ -47,6 +49,10 @@ export function TodoList() {
 
     return (
         <>
+            <AppHelmet title="Todo List">
+                <meta name="desciption" content="Todo List"></meta>
+            </AppHelmet>
+
             <div style={{ color }}>TodoList</div>
             <Button onClick={refresh}>Refresh</Button>
             <Pagination defaultCurrent={page} total={totalCount} onChange={paginationChange} />

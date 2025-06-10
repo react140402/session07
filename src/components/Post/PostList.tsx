@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import type { Post } from './Post';
 import { Pagination, Table, type TableProps } from 'antd';
 import { useFetchData } from '../../hooks/useFetchData';
+import { Helmet } from 'react-helmet-async';
+import { AppHelmet } from '../../AppHelmet';
 
 
 //lifecycle hooks
@@ -81,6 +83,7 @@ export function PostList() {
 
     return (
         <>
+            <AppHelmet title="Post List"></AppHelmet>
             <div>PostList</div>
             <Pagination defaultCurrent={page} total={totalCount} onChange={paginationChange} />
             <br />

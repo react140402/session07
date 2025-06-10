@@ -62,7 +62,6 @@ export const AppLayout = () => {
                             borderRadius: borderRadiusLG,
                         }}
                     >
-                        <SelectColor />
                         <Outlet />
                     </div>
                 </Content>

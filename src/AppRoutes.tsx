@@ -7,9 +7,9 @@ import { AppLayout } from './AppLayout'
 // import { PostList } from "./components/Post/PostList";
 import { AuthLayout } from "./AuthLayout";
 
-const TaskList = lazy(() => import("./components/Task/TaskList"))
-const TodoList = lazy(() => import("./components/Todo/TodoList"))
-const PostList = lazy(() => import("./components/Post/PostList"))
+const TaskList = lazy(() => import("./pages/Task/TaskList"))
+const TodoList = lazy(() => import("./pages/Todo/TodoList"))
+const PostList = lazy(() => import("./pages/Post/PostList"))
 
 
 

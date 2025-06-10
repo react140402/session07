@@ -10,6 +10,7 @@ import { AuthLayout } from "./AuthLayout";
 const TaskList = lazy(() => import("./pages/Task/TaskList"))
 const TodoList = lazy(() => import("./pages/Todo/TodoList"))
 const PostList = lazy(() => import("./pages/Post/PostList"))
+const Counter = lazy(() => import("./components/Counter"))
 
 
 
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: 'post',
                 element: <PostList />
+            },
+            {
+                path: 'counter',
+                element: <Counter />
             }
 
         ]

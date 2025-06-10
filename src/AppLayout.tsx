@@ -7,6 +7,7 @@ import type { MenuProps } from 'antd';
 import { Layout, Menu, theme } from 'antd';
 import { SelectColor } from './components/SelectColor';
 import { useNavigate, Outlet } from 'react-router-dom';
+import Counter from './components/Counter';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -31,6 +32,7 @@ const items: MenuItem[] = [
     getItem('Tasks', '/task', <PieChartOutlined />),
     getItem('Todos', '/todo', <DesktopOutlined />),
     getItem('Posts', '/post', <DesktopOutlined />),
+    getItem('Counter', '/counter', <DesktopOutlined />),
 ];
 
 export const AppLayout = () => {
@@ -49,6 +51,7 @@ export const AppLayout = () => {
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }} >
                     <SelectColor />
+                    <Counter></Counter>
                 </Header>
                 <Content style={{ margin: '0 16px' }}>
                     <div

@@ -3,6 +3,7 @@ import { PostList } from './components/Post/PostList'
 import { TaskList } from './components/Task/TaskList'
 import { TodoList } from './components/Todo/TodoList';
 import { SelectColor } from './components/SelectColor';
+import { AppContext } from './AppContext';
 
 function App() {
   const [color, setColor] = useState("red")
@@ -10,18 +11,20 @@ function App() {
 
   return (
     <>
-      <SelectColor setColor={setColor} />
-      <div className="container">
+      <AppContext.Provider value={{ color, setColor }}>
+        <SelectColor />
+        <div className="container">
 
-        <TodoList color={color} />
+          <TodoList />
 
-        <TaskList></TaskList>
+          <TaskList></TaskList>
 
 
 
-        <button onClick={() => setShowPostList(!showPostList)}>toggle</button>
-        {showPostList && <PostList></PostList>}
-      </div>
+          <button onClick={() => setShowPostList(!showPostList)}>toggle</button>
+          {showPostList && <PostList></PostList>}
+        </div>
+      </AppContext.Provider>
     </>
   )
 }

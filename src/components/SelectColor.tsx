@@ -1,5 +1,6 @@
-import { Button, Dropdown, Space, type MenuProps } from "antd";
-import { useState } from "react";
+import { Button, Dropdown, type MenuProps } from "antd";
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
 
 const items: MenuProps['items'] = [
     {
@@ -17,10 +18,9 @@ const items: MenuProps['items'] = [
 
 ];
 
-interface Props {
-    setColor: (val: string) => void;
-}
-export function SelectColor({ setColor }: Props) {
+
+export function SelectColor() {
+    const { setColor } = useContext(AppContext)
     const onClick: MenuProps['onClick'] = ({ key }) => {
         setColor(key)
     };

@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import type { Task } from "./Task";
+import { AppContext } from "../../AppContext";
 
 export interface Props {
     task: Task
@@ -6,9 +8,10 @@ export interface Props {
     remove: (task: Task) => void
 }
 export function TaskDetail({ task, toggle, remove }: Props) {
+    const { color } = useContext(AppContext);
     return <tr>
         <td>{task.id}</td>
-        <td>{task.name}</td>
+        <td style={{ color }}>{task.name}</td>
         <td>{task.done ? "Yes" : "No"}
             <button onClick={() => toggle(task)}>*️⃣</button>
             <button onClick={() => remove(task)}>❌</button>

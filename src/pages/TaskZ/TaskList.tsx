@@ -1,16 +1,11 @@
 import { useRef } from "react";
 import { TaskDetail } from "./TaskDetail";
 import { AppHelmet } from "../../AppHelmet";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { createTask, selectTasks } from "./task.slice";
+import { useTaskStore } from "./Task.store";
 
-
-//rfc - snippet 
 export default function TaskList() {
 
-    const tasks = useAppSelector(selectTasks)
-    const dispatch = useAppDispatch();
-
+    const { tasks, createTask } = useTaskStore();
     // const [tasks, setTask] = useState<Task[]>([
     //     { id: 1, name: "task 1", done: true },
     //     { id: 2, name: "task 2", done: true },
@@ -41,7 +36,7 @@ export default function TaskList() {
 
         // const newTask = { id: Math.random(), name: nameRef.current.value, done: false };
         // setTask([...tasks, newTask]);
-        dispatch(createTask(nameRef.current.value));
+        createTask(nameRef.current.value, false);
         nameRef.current.value = "";
     }
 

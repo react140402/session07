@@ -2,18 +2,24 @@ import { useRef, useState } from "react";
 import { TaskDetail } from "./TaskDetail";
 import type { Task } from "./Task";
 import { AppHelmet } from "../../AppHelmet";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { createTask, selectTasks } from "./task.slice";
 
 
 //rfc - snippet 
 export default function TaskList() {
 
-    const [tasks, setTask] = useState<Task[]>([
-        { id: 1, name: "task 1", done: true },
-        { id: 2, name: "task 2", done: true },
-        { id: 3, name: "task 3", done: false },
-        { id: 4, name: "task 4", done: false },
-        { id: 5, name: "task 5", done: true },
-    ]);
+    const tasks = useAppSelector(selectTasks)
+    const dispatch = useAppDispatch();
+
+    // const [tasks, setTask] = useState<Task[]>([
+    //     { id: 1, name: "task 1", done: true },
+    //     { id: 2, name: "task 2", done: true },
+    //     { id: 3, name: "task 3", done: false },
+    //     { id: 4, name: "task 4", done: false },
+    //     { id: 5, name: "task 5", done: true },
+    // ]);
+
     const nameRef = useRef<HTMLInputElement>(null);
 
 
@@ -34,19 +40,20 @@ export default function TaskList() {
             return;
         }
 
-        const newTask = { id: Math.random(), name: nameRef.current.value, done: false };
-        setTask([...tasks, newTask]);
+        // const newTask = { id: Math.random(), name: nameRef.current.value, done: false };
+        // setTask([...tasks, newTask]);
+        dispatch(createTask(nameRef.current.value));
         nameRef.current.value = "";
     }
 
-    const onToggle = (task: Task) => {
-        task.done = !task.done;
-        setTask([...tasks]);
-    }
+    // const onToggle = (task: Task) => {
+    //     task.done = !task.done;
+    //     setTask([...tasks]);
+    // }
 
-    const remove = (task: Task) => {
-        setTask(tasks.filter(x => x.id !== task.id));
-    }
+    // const remove = (task: Task) => {
+    //     setTask(tasks.filter(x => x.id !== task.id));
+    // }
 
     return (
         <>
@@ -63,7 +70,7 @@ export default function TaskList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map(task => <TaskDetail key={task.id} task={task} toggle={onToggle} remove={remove} />)}
+                    {tasks.map(task => <TaskDetail key={task.id} task={task} />)}
                 </tbody>
             </table>
         </>

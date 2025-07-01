@@ -13,6 +13,8 @@ const TodoList = lazy(() => import("./pages/Todo/TodoList"))
 const PostList = lazy(() => import("./pages/Post/PostList"))
 const Counter = lazy(() => import("./components/Counter"))
 const CounterZ = lazy(() => import("./components/counter-zustand/Counter"))
+const Album = lazy(() => import("./pages/Album"))
+const Photo = lazy(() => import("./pages/Photo"))
 
 
 
@@ -49,6 +51,14 @@ export const router = createBrowserRouter([
             {
                 path: 'counter-z',
                 element: <CounterZ />
+            },
+            {
+                path: 'album',
+                element: <Album />
+            },
+            {
+                path: 'album/:id/photos',
+                element: <Photo />
             }
 
         ]

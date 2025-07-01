@@ -16,7 +16,7 @@ export function useFetchData<T>(endpoint: string) {
     const loadData = async () => {
         setLoading(true);
         setData([]);
-        const resp = await axios.get<T[]>(`https://jsonplaceholder.typicode.com/${endpoint}?_page=${page}&_limit=${pageSize}`)
+        const resp = await axios.get<T[]>(`https://jsonplaceholder.typicode.com/${endpoint}${endpoint.includes('?') ? '&' : '?'}_page=${page}&_limit=${pageSize}`)
 
         setTotalCount(+resp.headers["x-total-count"]);
         setData(resp.data);

@@ -8,6 +8,7 @@ import { Layout, Menu, theme } from 'antd';
 import { SelectColor } from './components/SelectColor';
 import { useNavigate, Outlet } from 'react-router-dom';
 import Counter from './components/Counter';
+import { useCounterStore } from './components/counter-zustand/counter.store';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -33,6 +34,7 @@ const items: MenuItem[] = [
     getItem('Todos', '/todo', <DesktopOutlined />),
     getItem('Posts', '/post', <DesktopOutlined />),
     getItem('Counter', '/counter', <DesktopOutlined />),
+    getItem('Counter Z', '/counter-z', <DesktopOutlined />),
 ];
 
 export const AppLayout = () => {
@@ -41,6 +43,7 @@ export const AppLayout = () => {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
+    const { count } = useCounterStore();
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -52,6 +55,7 @@ export const AppLayout = () => {
                 <Header style={{ padding: 0, background: colorBgContainer }} >
                     <SelectColor />
                     <Counter></Counter>
+                    - {count}
                 </Header>
                 <Content style={{ margin: '0 16px' }}>
                     <div

@@ -11,6 +11,7 @@ const TaskList = lazy(() => import("./pages/Task/TaskList"))
 const TodoList = lazy(() => import("./pages/Todo/TodoList"))
 const PostList = lazy(() => import("./pages/Post/PostList"))
 const Counter = lazy(() => import("./components/Counter"))
+const CounterZ = lazy(() => import("./components/counter-zustand/Counter"))
 
 
 
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: 'counter',
                 element: <Counter />
+            },
+            {
+                path: 'counter-z',
+                element: <CounterZ />
             }
 
         ]

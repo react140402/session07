@@ -10,8 +10,8 @@ interface AuthStore {
 }
 
 const initialState: AuthStore = {
-    token: '', //TODO  
-    email: '',
+    token: localStorage.getItem("token") || '', // default operator
+    email: localStorage.getItem("email") ?? '', // nullish operator
     loading: false
 }
 
@@ -41,6 +41,9 @@ const authSlice = createSlice({
             state.loading = false;
             state.email = action.payload.email;
             state.token = action.payload.token;
+            localStorage.setItem("token", state.token);
+            localStorage.setItem("email", state.email);
+
             //navigate /  ?
         });
         builder.addCase(loginAction.rejected, (state) => {

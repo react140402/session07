@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { type LoginRequest } from "../../Api";
+import { type LoginRequest, type RegisterRequest } from "../../Api";
 import { appApi } from "../../AppApi";
 import type { RootState } from "../../store";
 
@@ -21,6 +21,12 @@ export const loginAction = createAsyncThunk("auth/login", async (request: LoginR
     const resp = await appApi.auth.login(request);
     return { token: resp.data.token, email: request.email };
 })
+
+export const registerAction = createAsyncThunk("auth/register", async (request: RegisterRequest) => {
+    const resp = await appApi.auth.register(request);
+    return { token: resp.data.token, email: request.email };
+})
+
 
 const authSlice = createSlice({
     name: "auth",
@@ -53,6 +59,23 @@ const authSlice = createSlice({
             //navigate /  ?
         });
         builder.addCase(loginAction.rejected, (state) => {
+            state.loading = false;
+            state.email = "";
+            state.token = "";
+        });
+
+
+        builder.addCase(registerAction.pending, state => {
+            state.loading = true;
+        });
+        builder.addCase(registerAction.fulfilled, (state, action) => {
+            state.loading = false;
+            state.email = action.payload.email;
+            state.token = action.payload.token;
+            localStorage.setItem("token", state.token);
+            localStorage.setItem("email", state.email);
+        });
+        builder.addCase(registerAction.rejected, (state) => {
             state.loading = false;
             state.email = "";
             state.token = "";

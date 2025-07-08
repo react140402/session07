@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import type { FormProps } from 'antd';
-import { Button, Form, Input } from 'antd';
-import { type LoginRequest, Api } from '../../Api';
+import { Button, Form, Input, Spin } from 'antd';
+import { type RegisterRequest } from '../../Api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { loginAction, selectToken } from './auth.slice';
+import { registerAction, selectAuth, selectToken } from './auth.slice';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -12,11 +12,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const App: React.FC = () => {
     const dispatch = useAppDispatch();
-    const onFinish: FormProps<LoginRequest>['onFinish'] = async (values) => {
-        dispatch(loginAction(values));
+    const onFinish: FormProps<RegisterRequest>['onFinish'] = async (values) => {
+        dispatch(registerAction(values));
     };
 
-    const token = useAppSelector(selectToken);
+    const { token, loading } = useAppSelector(selectAuth);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,11 +29,10 @@ const App: React.FC = () => {
         name="login"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        initialValues={{ email: "test@test.com" }}
         onFinish={onFinish}
         autoComplete="off"
     >
-        <Form.Item<LoginRequest>
+        <Form.Item<RegisterRequest>
             label="email"
             name="email"
             rules={[{ required: true, message: 'Please input your email!' }]}
@@ -41,7 +40,7 @@ const App: React.FC = () => {
             <Input type='email' />
         </Form.Item>
 
-        <Form.Item<LoginRequest>
+        <Form.Item<RegisterRequest>
             label="Password"
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
@@ -51,13 +50,15 @@ const App: React.FC = () => {
 
 
         <Form.Item label={null}>
-            <Button type="primary" htmlType="submit">
-                Login
-            </Button>
+            <Spin spinning={loading}>
+                <Button type="primary" htmlType="submit">
+                    Register
+                </Button>
+            </Spin>
             &nbsp;
-            <Link to="/auth/register">Create account</Link>
-        </Form.Item>
+            <Link to="/auth/login">Login</Link>
 
+        </Form.Item>
     </Form>
     )
 };

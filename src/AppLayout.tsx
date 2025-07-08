@@ -4,13 +4,13 @@ import {
     PieChartOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, theme } from 'antd';
+import { Button, Layout, Menu, theme } from 'antd';
 import { SelectColor } from './components/SelectColor';
 import { useNavigate, Outlet } from 'react-router-dom';
 import Counter from './components/Counter';
 import { useCounterStore } from './components/counter-zustand/counter.store';
-import { useAppSelector } from './hooks';
-import { selectToken } from './pages/auth/auth.slice';
+import { useAppDispatch, useAppSelector } from './hooks';
+import { logout, selectAuth, selectToken } from './pages/auth/auth.slice';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -43,8 +43,9 @@ const items: MenuItem[] = [
 
 export const AppLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const token = useAppSelector(selectToken);
+    const { token, email } = useAppSelector(selectAuth);
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (!token) {
@@ -68,6 +69,8 @@ export const AppLayout = () => {
                     <SelectColor />
                     <Counter></Counter>
                     - {count}
+
+                    <Button type='link' onClick={() => dispatch(logout())} >{email} - Logout</Button>
                 </Header>
                 <Content style={{ margin: '0 16px' }}>
                     <div

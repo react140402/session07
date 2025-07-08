@@ -30,6 +30,12 @@ const authSlice = createSlice({
         // login: (state, action) => {
         //     //const resp = await client.auth.login(values);
         // }
+        logout: (state) => {
+            state.email = "";
+            state.token = "";
+            localStorage.setItem("token", '');
+            localStorage.setItem("email", '');
+        }
     },
     extraReducers: (builder) => {
         //Promise -> 1. pending, 2. fulfilled, 3.rejected
@@ -58,4 +64,5 @@ const authSlice = createSlice({
 export const selectToken = (state: RootState) => state.auth.token
 export const selectAuth = (state: RootState) => state.auth
 
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

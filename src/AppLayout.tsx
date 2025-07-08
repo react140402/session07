@@ -10,7 +10,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import Counter from './components/Counter';
 import { useCounterStore } from './components/counter-zustand/counter.store';
 import { useAppDispatch, useAppSelector } from './hooks';
-import { logout, selectAuth, selectToken } from './pages/auth/auth.slice';
+import { logout, selectAuth } from './pages/auth/auth.slice';
 
 const { Header, Content, Footer, Sider } = Layout;
 

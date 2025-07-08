@@ -1,45 +1,32 @@
-import { Flex, Layout } from "antd"
-import { Content, Footer, Header } from "antd/es/layout/layout"
-import { Outlet } from "react-router-dom";
+import React from 'react';
+import { Layout, theme } from 'antd';
+import { Outlet } from 'react-router-dom';
 
-const headerStyle: React.CSSProperties = {
-    textAlign: 'center',
-    color: '#fff',
-    height: 64,
-    paddingInline: 48,
-    lineHeight: '64px',
-    backgroundColor: '#4096ff',
-};
+const { Content } = Layout;
 
-const contentStyle: React.CSSProperties = {
-    textAlign: 'center',
-    minHeight: 120,
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#0958d9',
-};
 
-const footerStyle: React.CSSProperties = {
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#4096ff',
-};
+export const AuthLayout: React.FC = () => {
+    const {
+        token: { colorBgContainer, borderRadiusLG },
+    } = theme.useToken();
 
-const layoutStyle = {
-    borderRadius: 8,
-    overflow: 'hidden',
-    width: 'calc(50% - 8px)',
-    maxWidth: 'calc(50% - 8px)',
-};
+    return (
+        <Layout style={{ height: '100vh' }}>
+            <Content style={{ padding: '10px 48px' }}>
 
-export const AuthLayout = () => {
-    return <Flex gap="middle" wrap>
-        <Layout style={layoutStyle}>
-            <Header style={headerStyle}>Header</Header>
-            <Content style={contentStyle}>
-                <Outlet />
+                <div
+                    style={{
+                        background: colorBgContainer,
+                        minHeight: 800,
+                        padding: 24,
+                        borderRadius: borderRadiusLG,
+                    }}
+                >
+                    <Outlet></Outlet>
+                </div>
             </Content>
-            <Footer style={footerStyle}>{import.meta.env.VITE_APP_TITLE}</Footer>
+
         </Layout>
-    </Flex>
-}
+    );
+};
+

@@ -15,6 +15,7 @@ const Counter = lazy(() => import("./components/Counter"))
 const CounterZ = lazy(() => import("./components/counter-zustand/Counter"))
 const Album = lazy(() => import("./pages/Album"))
 const Photo = lazy(() => import("./pages/Photo"))
+const Login = lazy(() => import("./pages/auth/login"))
 
 
 
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'login',
-                element: <h1>Login</h1>
+                element: <Login />
             }
         ]
     }

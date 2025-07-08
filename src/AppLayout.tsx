@@ -32,6 +32,7 @@ function getItem(
 
 const items: MenuItem[] = [
     getItem('Home', '/', <PieChartOutlined />),
+    getItem('ادویه', '/advie', <PieChartOutlined />),
     getItem('Tasks', '/task', <PieChartOutlined />),
     getItem('Tasks Z', '/task-z', <PieChartOutlined />),
     getItem('Todos', '/todo', <DesktopOutlined />),

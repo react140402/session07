@@ -17,6 +17,7 @@ const Album = lazy(() => import("./pages/Album"))
 const Photo = lazy(() => import("./pages/Photo"))
 const Login = lazy(() => import("./pages/auth/login"))
 const Register = lazy(() => import("./pages/auth/register"))
+const Advie = lazy(() => import("./pages/Advie"))
 
 
 
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: '',
                 element: <h1>Home</h1>
+            },
+            {
+                path: 'advie',
+                element: <Advie />
             },
             {
                 path: 'task',

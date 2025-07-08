@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
 import { type LoginRequest, Api } from '../../Api';
-import { useAppDispatch } from '../../hooks';
-import { loginAction } from './auth.slice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { loginAction, selectToken } from './auth.slice';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,6 +15,15 @@ const App: React.FC = () => {
     const onFinish: FormProps<LoginRequest>['onFinish'] = async (values) => {
         dispatch(loginAction(values));
     };
+
+    const token = useAppSelector(selectToken);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token) {
+            navigate("/");
+        }
+    }, [token])
 
     return (<Form
         name="login"

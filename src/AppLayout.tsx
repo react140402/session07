@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -9,6 +9,8 @@ import { SelectColor } from './components/SelectColor';
 import { useNavigate, Outlet } from 'react-router-dom';
 import Counter from './components/Counter';
 import { useCounterStore } from './components/counter-zustand/counter.store';
+import { useAppSelector } from './hooks';
+import { selectToken } from './pages/auth/auth.slice';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -41,7 +43,15 @@ const items: MenuItem[] = [
 
 export const AppLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const token = useAppSelector(selectToken);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!token) {
+            navigate("/auth/login");
+        }
+    }, [token])
+
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();

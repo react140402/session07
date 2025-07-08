@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { type LoginRequest } from "../../Api";
 import { appApi } from "../../AppApi";
+import type { RootState } from "../../store";
 
 interface AuthStore {
     token: string;
@@ -40,6 +41,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.email = action.payload.email;
             state.token = action.payload.token;
+            //navigate /  ?
         });
         builder.addCase(loginAction.rejected, (state) => {
             state.loading = false;
@@ -49,5 +51,8 @@ const authSlice = createSlice({
     }
 });
 
+
+export const selectToken = (state: RootState) => state.auth.token
+export const selectAuth = (state: RootState) => state.auth
 
 export default authSlice.reducer;

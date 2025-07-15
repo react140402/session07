@@ -1,8 +1,17 @@
 import { notification } from "antd";
 import { Api } from "./Api";
-import axios from 'axios'
+
 
 export const appApi = new Api({ baseURL: "http://localhost:3010" });
+
+appApi.instance.interceptors.request.use(async (config) => {
+    const { store } = await import("./store");
+    const token = store.getState().auth.token;
+    if (token) {
+        config.headers["authorize"] = `Bearer ${token}`
+    }
+    return config;
+});
 
 appApi.instance.interceptors.response.use(
     (response) => {

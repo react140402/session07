@@ -103,9 +103,9 @@ const delay = (req: any, res: any, next: any) => {
 const authorize = (req: any, res: any, next: any) => {
     if (!withAuth) return next();
 
-    const token = req.headers["token"];
+    const authorize = req.headers["authorize"] || "";
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded = jwt.verify(authorize.split(" ")[1], JWT_SECRET);
         res.setHeader("X-USER", decoded.email);
         next();
     } catch (err) {

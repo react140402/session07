@@ -6,6 +6,7 @@ import { AppLayout } from './AppLayout'
 // import { TodoList } from "./components/Todo/TodoList";
 // import { PostList } from "./components/Post/PostList";
 import { AuthLayout } from "./AuthLayout";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const TaskList = lazy(() => import("./pages/Task/TaskList"))
 const TaskListZ = lazy(() => import("./pages/TaskZ/TaskList"))
@@ -61,7 +62,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'album',
-                element: <Album />
+                element: <ProtectedRoute role="admin"><Album /></ProtectedRoute>
             },
             {
                 path: 'album/:id/photos',

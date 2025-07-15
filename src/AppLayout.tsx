@@ -39,7 +39,7 @@ const items: MenuItem[] = [
     getItem('Posts', '/post', <DesktopOutlined />),
     getItem('Counter', '/counter', <DesktopOutlined />),
     getItem('Counter Z', '/counter-z', <DesktopOutlined />),
-    getItem('Album', '/album', <DesktopOutlined />),
+    //getItem('Album', '/album', <DesktopOutlined />),
 ];
 
 export const AppLayout = () => {

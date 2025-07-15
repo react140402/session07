@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { TaskDetail } from "./TaskDetail";
-import { AppHelmet } from "../../AppHelmet";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { AppHelmet } from "~/AppHelmet";
+import { useAppDispatch, useAppSelector } from "~/hooks";
 import { createTask, selectTasks } from "./task.slice";
 
 

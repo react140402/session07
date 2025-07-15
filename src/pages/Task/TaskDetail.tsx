@@ -1,8 +1,9 @@
 import { use, useState } from "react";
 import type { Task } from "./Task";
-import { AppContext } from "../../AppContext";
+import { AppContext } from "~/AppContext";
 import { deleteTask, toggleTask, updateTask } from "./task.slice";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch } from "~/hooks";
+
 
 export interface Props {
     task: Task

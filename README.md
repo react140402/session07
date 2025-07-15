@@ -36,3 +36,24 @@ SSR
 
 
 ## Progresive Web Application - PWA
+    https
+    manifest.json
+    service worker
+
+
+## CSS:
+    bootstart, etc
+    <button class="btn btn-primary ">
+    .btn: {
+        ....
+    }
+
+    atomic css library
+    tailwind, unocss, ...
+    <button class="m-5">
+
+    .m-5 {margin: 5px;}
+    .m-2 {margin: 5px;}
+    .p-2 {padding: 5px;}
+
+    https://ui.shadcn.com/

@@ -30,6 +30,24 @@ const manifest: Partial<VitePWAOptions> = {
         "purpose": "maskable"
       }
     ]
+  },
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: /^http:\/\/localhost:3010\/advie/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'api-advie-cache',
+          expiration: {
+            maxEntries: 50,
+            maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          },
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
+      }
+    ]
   }
 }
 

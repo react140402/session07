@@ -2,7 +2,7 @@ import { notification } from "antd";
 import { Api } from "./Api";
 
 
-export const appApi = new Api({ baseURL: "http://localhost:3010" });
+export const appApi = new Api({ baseURL: import.meta.env.VITE_API });
 
 appApi.instance.interceptors.request.use(async (config) => {
     const { store } = await import("./store");

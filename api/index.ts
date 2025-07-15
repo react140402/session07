@@ -40,21 +40,21 @@ server.get("/swagger.json", (req: any, res: any) => {
 });
 
 server.get("/config/delay", (req, res) => {
-    res.json({ withDelay });
+    res.json(withDelay);
 });
 
 server.post("/config/delay", (req, res) => {
     withDelay = !withDelay;
-    res.json({ withDelay });
+    res.json(withDelay);
 });
 
 server.get("/config/auth", (req, res) => {
-    res.json({ withAuth });
+    res.json(withAuth);
 });
 
 server.post("/config/auth", (req, res) => {
     withAuth = !withAuth;
-    res.json({ withAuth });
+    res.json(withAuth);
 });
 
 server.post("/auth/register", (req, res) => {

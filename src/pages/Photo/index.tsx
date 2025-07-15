@@ -3,7 +3,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { use } from "react";
 import { AppContext } from "../../AppContext";
 import { AppHelmet } from "../../AppHelmet";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 interface Album {
     id: number;

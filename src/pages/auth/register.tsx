@@ -3,7 +3,7 @@ import type { FormProps } from 'antd';
 import { Button, Form, Input, Spin } from 'antd';
 import { type RegisterRequest } from '../../Api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { registerAction, selectAuth, selectToken } from './auth.slice';
+import { registerAction, selectAuth } from './auth.slice';
 import { Link, useNavigate } from 'react-router-dom';
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
-import { type LoginRequest, Api } from '../../Api';
+import { type LoginRequest } from '../../Api';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction, selectToken } from './auth.slice';
 import { Link, useNavigate } from 'react-router-dom';

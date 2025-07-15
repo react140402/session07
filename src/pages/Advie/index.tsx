@@ -1,4 +1,4 @@
-import { Button, Pagination, Table, type TableProps, Popconfirm, notification, Form, Input, type FormProps } from "antd";
+import { Button, Pagination, Table, type TableProps, Popconfirm, notification, Form, Input } from "antd";
 import { use } from "react";
 import { AppContext } from "../../AppContext";
 import { AppHelmet } from "../../AppHelmet";
@@ -92,7 +92,7 @@ export default function () {
                 <Form.Item<AdvieCreateModel>
                     label="Name"
                     name="Name"
-                    rules={[{ required: true }]}
+                    rules={[{ required: true, message: "نام را کامل وارد کنید", len: 5 }]}
                 >
                     <Input />
                 </Form.Item>

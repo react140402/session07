@@ -5,11 +5,10 @@ interface Props {
     title: string
     children?: React.ReactNode
 }
-export function AppHelmet({ title, children }: Props) {
+export function AppHelmet({ title }: Props) {
     return (
         <Helmet>
-            <title>{title} | {import.meta.env.VITE_APP_TITLE}</title>
-            {children}
+            <title>{`${title} | ${import.meta.env.VITE_APP_TITLE}`}</title>
         </Helmet>
     )
 }
